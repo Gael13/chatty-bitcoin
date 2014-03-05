@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatty</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "admin", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="admin">
+  <%= render partial: 'layouts/demo_bar' if show_demo_bar? %>
+  <div class="container">
+  	<div id="banner">
+  	  <nav id="nav">
+  	  	<ul>
+  	  	  <li><%= link_to "sign out", session_path, method: :delete %></li>
+  	  	</ul>
+  	  </nav>
+  	  <header id="header">
+  	    <%= link_to root_path do %>
+  	      <h1>
+  	        <% if site_locked? %>
+  	          <%= site_data.name %>
+  	        <% else %>
+  	          Bitcoin Payment Service
+  	        <% end %>
+  	      </h1>      	  
+        <% end %>
+      </header>
+    </div>
+    <div id="admin-panel">
+      <section id="side-menu" class="panel">
+        <header>
+          <h2>Dashboard</h2>
+        </header>
+        <nav id="side-menu">
+          <ul class="touchable">
+            <li class="first"><a href="#">Payments</a></li>
+            <li><a href="#">Bitcoin Addresses</a></li>
+            <li><a href="#">Send Bitcoins</a></li>
+            <li><a href="#">Site</a></li>
+            <li><a href="#">Account</a></li>
+            <li class="trail"></li>
+          </ul>
+        </nav>
+      </section>
+      <section id="main-panel" class="panel">
+        <header>
+          <h3>Payments</h3>
+        </header>
+        <div id="main">
+          <%= yield %>
+        </div>
+      </section>
+    </div>
+  </div>                      
+</body>
+</html>

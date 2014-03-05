@@ -1,15 +1,40 @@
 Chatty::Application.routes.draw do
-  
+  root to: "bitcoin_addresses#index"
+  get "setup_site" => "sessions#owner_setup_site", as: "owner_setup_site"
 
+  scope 'api' do
+    resources :bitcoin_addresses, only: [:index, :new, :create, :show]
+  end
+  resources :users, only: [:new, :create]
+  resource :session 
 
-  match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  match 'auth/failure', to: redirect('/'), via: [:get, :post]
-  match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
+  namespace :admin do 
+    scope 'api' do 
+      resources :bitcoin_addresses
+      resources :payments do 
+        get :refresh, on: :collection
+      end
+    end
+
+    match "/dashboard", to: "dashboard#index"
+    resource :site do
+      get :setup_successful, on: :member
+    end
+    resources :users do 
+      resource :check_password, only: [:new, :create]
+    end
+  end
+
+  # Actions handy when developing
+  if Chatty::Services.demo_mode?
+    %w{blank_slate setup_site sign_in add_bitcoin_address add_payment}.each do |action|
+      match "demo/#{action}" => "demo##{action}", as: "#{action}_demo"
+    end
+  end                 
 
   resource :messages do
     collection { get :events }
   end
-  root to: "messages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

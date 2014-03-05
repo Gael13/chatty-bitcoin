@@ -2,10 +2,9 @@
 
 FactoryGirl.define do
   factory :user do
-    provider "MyString"
-    uid "MyString"
     name "MyString"
-    oauth_token "MyString"
-    oauth_expires_at "2014-02-06 13:18:38"
+    email "MyString"
+    password_hash "MyString"
+    password_salt "MyString"
   end
 end

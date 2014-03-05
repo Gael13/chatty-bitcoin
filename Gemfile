@@ -7,6 +7,17 @@ gem "puma"
 gem "redis"
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'backbone-on-rails'
+gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'formtastic'
+
+gem 'aasm'
+
+# FFI needed to regenerate public key from private key
+gem 'ffi'
+gem 'bitcoin-ruby', :git => "https://github.com/mhanne/bitcoin-ruby.git"
+
+gem 'rabl'
 
 # Keep for bootstrap
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -19,6 +30,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'bootstrap-sass'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -33,6 +45,10 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-redis_helper'
+  gem 'ir_b'
+  gem 'steak'
+  gem 'faker'
+  gem 'machinist', :git => 'https://github.com/JamieFlournoy/machinist.git'
 end
 
 group :test do

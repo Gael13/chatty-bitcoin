@@ -1,0 +1,10 @@
+<div id="admin"></div>
+
+<script type="text/javascript">
+  $(function() {
+  	// Blog is the app name
+  	window.router = new Chatty.Admin.Routers.Dashboard();
+
+  	Backbone.history.start({root: "/admin/dashboard"});
+  });
+</script>  

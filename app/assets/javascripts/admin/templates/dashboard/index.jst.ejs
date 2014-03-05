@@ -1,0 +1,66 @@
+<div id="dashboard">
+  <section id="payments">
+  	<ul class="actions">
+  	  <li><a class="refresh" href=''>Refresh</a></li>
+  	</ul>
+  	<h2>Payments</h2>
+  	<% if(payments != undefined && payments.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount BTC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% payments.forEach(function(payment) { %>
+            <tr>
+              <td><%= payment.get('created_at') %></td>
+              <td class="description"><%= Chatty.simple_format(payment.get('bitcoin_address').description) %></td>
+              <td><%= payment.get('amount') %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>No payments have been recorded</p>      
+    <% } %>
+  </section>
+  
+  <section id="bitcoin_addresses" class="span-17 append-1 last">
+    <h2>Bitcoin addresses</h2>
+    <% if(bitcoin_adresses !== undefined && bitcoin_addresses.length > 0) { %>
+      <ol>
+      	<% bitcoin_addresses.forEach(function(bitcoin_address) { %>
+          <li>
+            <hr class="push-2">
+            <header>
+              <div class="id span-2">#<%= bitcoin_address.get('id') %>
+              </div>
+              <address class="bitcoin_address span-10">
+                <%= bitcoin_address.get('address') %>
+              </address>
+              <a href="#" class="show_keys span-5 last">show keys</a>
+            </header>
+            <div class="keys prepend-2 span-15 last">
+              <code>
+                <span>Private</span>
+                <%= bitcoin_address.get('private_key') %>
+              </code>
+              <code class="public">
+              	<span>Public</span>
+              	<%= bitcoin_address.get('public_key') %>
+              </code>
+            </div>
+            <div class="description prepend-2 span-16 last">
+              <%= Chatty.simple_format(bitcoin_address.get('description')) %>
+            </div>
+          </li>      	
+        <% }); %>
+      </ol>  
+    <% } else { %>
+      <p>No bitcoin addresses have been generated</p>
+    <% } %>
+  </section>
+</div>    

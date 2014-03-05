@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Describe your payment</h1>
+  <small>What is your payment for?</smalL>
+</div>
+
+<form id="new-bitcoin-address" class="form-horizontal">
+  <fieldset>
+    <div id="bitcoin_address_description_input" class="control-group">
+      <label class="control-label" for="description">Description</label>
+      <div class="controls">
+        <textarea name="description" id="description" class="input-xlarge" rows="8"><%= description %></textarea>
+    </div>
+    <div class="form-actions">
+      <input type="submit" value="Finish payment" id="submit-bitcoin-address" class="btn btn-primary" />
+      <a href="#index" class="btn">Cancel</a>
+    </div>
+  </fieldset>
+</form>            	
