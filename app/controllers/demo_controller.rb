@@ -1,5 +1,5 @@
 class DemoController < ApplicationController
-  #if Chatty::Services.demo_mode?
+  if Chatty::Services.demo_mode?
     
     def blank_slate(options = {redirect: true})
       User.destroy_all

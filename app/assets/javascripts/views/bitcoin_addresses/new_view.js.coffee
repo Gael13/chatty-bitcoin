@@ -1,6 +1,6 @@
 Chatty.Views.BitcoinAddresses ||= {}
 
-class Chaty.Views.BitcoinAddresses.NewView extends Backbone.View
+class Chatty.Views.BitcoinAddresses.NewView extends Backbone.View
   template: JST["templates/bitcoin_addresses/new"]
 
   events:
@@ -10,7 +10,7 @@ class Chaty.Views.BitcoinAddresses.NewView extends Backbone.View
     super(options)
     @model = new @collection.model()
     @model.bind("change:errors", () =>
-      this.render(options.user_full_name)
+      this.render(options.user_name)
     )
 
   save: (e) ->
@@ -22,14 +22,14 @@ class Chaty.Views.BitcoinAddresses.NewView extends Backbone.View
     @collection.create(@model.toJSON(),
       success: (post) =>
         @model = post
-        window.location.hash= "/bitcoin_addresses/#{@model.attributes.id_alias}"
+        window.location.hash = "/bitcoin_addresses/#{@model.attributes.id_alias}"
       error: (post, jqXHR) =>
         @model.set({errors: $.parseJSON(jqXHR.responseText)})
     )
 
-  render: (user_full_name) ->
+  render: (user_name) ->
     hash = @model.toJSON()
-    hash.user_full_name = user_full_name
+    hash.user_name = user_name
     $(@el).html(@template(hash))
 
     if @model.get('errors')?

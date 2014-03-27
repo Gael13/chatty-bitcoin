@@ -3,7 +3,7 @@ Chatty.Views.BitcoinAddresses ||= {}
 class Chatty.Views.BitcoinAddresses.IndexView extends Backbone.View
   template: JST["templates/bitcoin_addresses/index"]
 
-  render: (user_full_name) ->
-    $(@el).html(@template(user_full_name: user_full_name))
+  render: (user_name) ->
+    $(@el).html(@template(user_name: user_name))
 
     return this

@@ -1,4 +1,4 @@
-class Chatty.Admin.Routers.Dashboard extends Backbone.Routers
+class Chatty.Admin.Routers.Dashboard extends Backbone.Router
   initialize: ->
     @bitcoin_addresses = new Chatty.Collections.BitcoinAddressesCollection()
     @bitcoin_addresses.url = '/admin/api/bitcoin_addresses'

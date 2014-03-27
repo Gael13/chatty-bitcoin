@@ -70,6 +70,9 @@ feature "Payments administration", %q{
     page.should have_content ba_several_transactions.address
 
     within '#payments' do
+      page.should have_content "No payments have been recorded"
+
+      click_link 'Refresh'
       page.should have_content "demo address with 2 transactions"
       page.should have_no_content "No payments have been recorded"
     end

@@ -18,10 +18,10 @@ feature "Get bitcoin address", %q{
   	# Blank description
   	fill_in 'Description', with: ""
   	click_button "Finish payment"
-  	page.shoud have_content "can't be blank"
+  	page.should have_content "can't be blank"
 
   	# Fill out description and other fields
-  	fill_in 'Dscription', with: "Some money for dinner last night"
+  	fill_in 'Description', with: "Some money for dinner last night"
   	click_button "Finish payment"
 
   	page.should have_content "send your payment to the following address"

@@ -2,7 +2,7 @@ class Chatty.Routers.BitcoinAddressesRouter extends Backbone.Router
   initialize: (options) ->
     @bitcoin_addresses = new Chatty.Collections.BitcoinAddressesCollection()
     @bitcoin_addresses.reset []
-    @user_full_name = options.user_full_name
+    @user_name = options.user_name
 
   routes:
     "index" : "index"
@@ -11,12 +11,12 @@ class Chatty.Routers.BitcoinAddressesRouter extends Backbone.Router
     ".*" : "index"
 
   index: ->
-    new Chatty.Views.BitcoinAddresses.IndexView(el: "#bitcoin_addresses").render(@user_full_name)
+    new Chatty.Views.BitcoinAddresses.IndexView(el: "#bitcoin_addresses").render(@user_name)
 
   newBitcoinAddress: ->
     @view = new Chatty.Views.BitcoinAddresses.NewView(collection:
-    @bitcoin_addresses, user_full_name: @user_full_name)
-    $("#bitcoin_addresses").html(@view.render(@user_full_name).el)
+    @bitcoin_addresses, user_name: @user_name)
+    $("#bitcoin_addresses").html(@view.render(@user_name).el)
 
   show: (id_alias) ->
     bitcoin_address = new Chatty.Models.BitcoinAddress({ id: id_alias })

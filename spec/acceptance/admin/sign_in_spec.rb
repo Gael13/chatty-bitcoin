@@ -7,7 +7,7 @@ feature "Sign in", %q{
 } do 
 
   let!(:user) { User.make }
-  let!(:site) { Site.make.tap(&:lock_to_owner) }
+  let!(:site) { Site.make.tap(&:lock_to_owner!) }
 
   scenario "Signing in gives access to admin", js: true do
   	visit root_path
